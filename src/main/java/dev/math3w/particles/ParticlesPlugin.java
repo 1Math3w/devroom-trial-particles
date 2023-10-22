@@ -7,6 +7,7 @@ import dev.math3w.particles.config.MenuConfig;
 import dev.math3w.particles.config.MessagesConfig;
 import dev.math3w.particles.config.ParticlesConfig;
 import dev.math3w.particles.menus.ParticlesMenu;
+import dev.math3w.particles.particles.ParticleSpawner;
 import dev.math3w.particles.particles.PlayerParticleManager;
 import dev.math3w.particles.particles.SQLPlayerParticleManager;
 import me.zort.containr.Containr;
@@ -23,6 +24,7 @@ public class ParticlesPlugin extends JavaPlugin {
     private ParticlesConfig particlesConfig;
     private PlayerParticleManager playerParticleManager;
     private ParticlesMenu particlesMenu;
+    private ParticleSpawner particleSpawner;
 
     @Override
     public void onEnable() {
@@ -45,6 +47,7 @@ public class ParticlesPlugin extends JavaPlugin {
         particlesConfig = new ParticlesConfig(this);
         playerParticleManager = new SQLPlayerParticleManager(this);
         particlesMenu = new ParticlesMenu(this);
+        particleSpawner = new ParticleSpawner(this);
     }
 
     public Economy getEconomy() {
@@ -73,5 +76,9 @@ public class ParticlesPlugin extends JavaPlugin {
 
     public ParticlesMenu getParticlesMenu() {
         return particlesMenu;
+    }
+
+    public ParticleSpawner getParticleSpawner() {
+        return particleSpawner;
     }
 }
