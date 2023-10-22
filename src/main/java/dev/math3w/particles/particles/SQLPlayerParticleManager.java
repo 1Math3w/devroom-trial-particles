@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.concurrent.CompletableFuture;
 
 public class SQLPlayerParticleManager extends PlayerParticleManager {
@@ -38,6 +39,7 @@ public class SQLPlayerParticleManager extends PlayerParticleManager {
                 try (ResultSet resultSet = statement.executeQuery()) {
                     if (resultSet.next()) {
                         String particleName = resultSet.getString(1);
+                        if (particleName == null) return null;
                         return plugin.getParticlesConfig().getParticle(particleName);
                     }
                 }
@@ -56,8 +58,13 @@ public class SQLPlayerParticleManager extends PlayerParticleManager {
                     "VALUES (?, ?) " +
                     "ON DUPLICATE KEY UPDATE selected = ?;")) {
                 statement.setString(1, player.getUniqueId().toString());
-                statement.setString(2, particle.name());
-                statement.setString(3, particle.name());
+                if (particle != null) {
+                    statement.setString(2, particle.name());
+                    statement.setString(3, particle.name());
+                } else {
+                    statement.setNull(2, Types.VARCHAR);
+                    statement.setNull(3, Types.VARCHAR);
+                }
                 statement.executeUpdate();
             } catch (SQLException e) {
                 throw new RuntimeException(e);

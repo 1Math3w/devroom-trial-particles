@@ -33,7 +33,7 @@ public class MessagesConfig extends CustomConfig {
         addDefault("buy.success", "&aYou have successfully purchased a particle %particle% &afor $%price%!");
         addDefault("select", "&aYou have selected particle %particle%");
         addDefault("already-selected", "&cYou have already selected this particle");
-        addDefault("stop.not-selected", "&aYou don't have selected any particle");
+        addDefault("stop.not-selected", "&cYou don't have selected any particle");
         addDefault("stop.success", "&aYour particle was disabled");
     }
 }

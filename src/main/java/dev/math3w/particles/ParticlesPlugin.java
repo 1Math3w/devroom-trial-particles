@@ -1,6 +1,7 @@
 package dev.math3w.particles;
 
 import dev.math3w.particles.commands.ParticlesCommand;
+import dev.math3w.particles.commands.ParticlesStopCommand;
 import dev.math3w.particles.config.DatabaseConfig;
 import dev.math3w.particles.config.MenuConfig;
 import dev.math3w.particles.config.MessagesConfig;
@@ -36,6 +37,7 @@ public class ParticlesPlugin extends JavaPlugin {
         economy = rsp.getProvider();
 
         getCommand("particles").setExecutor(new ParticlesCommand(this));
+        getCommand("particlestop").setExecutor(new ParticlesStopCommand(this));
 
         messagesConfig = new MessagesConfig(this);
         databaseConfig = new DatabaseConfig(this);
