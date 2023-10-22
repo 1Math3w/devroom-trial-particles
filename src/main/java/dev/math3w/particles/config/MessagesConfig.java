@@ -30,8 +30,9 @@ public class MessagesConfig extends CustomConfig {
     @Override
     protected void addDefaults() {
         addDefault("buy.not-enough", "&cYou don't have enough money to purchase this particle!");
-        addDefault("buy.success", "&aYou have successfully purchased a particle %particle% for $%price%!");
+        addDefault("buy.success", "&aYou have successfully purchased a particle %particle% &afor $%price%!");
         addDefault("select", "&aYou have selected particle %particle%");
+        addDefault("already-selected", "&cYou have already selected this particle");
         addDefault("stop.not-selected", "&aYou don't have selected any particle");
         addDefault("stop.success", "&aYour particle was disabled");
     }

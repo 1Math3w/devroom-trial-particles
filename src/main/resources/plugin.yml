@@ -5,5 +5,6 @@ author: math3w.dev
 api-version: 1.20
 depend:
   - Vault
+  - LuckPerms
 commands:
   particles:

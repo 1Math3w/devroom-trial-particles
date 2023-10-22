@@ -1,8 +1,13 @@
 package dev.math3w.particles;
 
+import dev.math3w.particles.commands.ParticlesCommand;
 import dev.math3w.particles.config.DatabaseConfig;
+import dev.math3w.particles.config.MenuConfig;
 import dev.math3w.particles.config.MessagesConfig;
 import dev.math3w.particles.config.ParticlesConfig;
+import dev.math3w.particles.menus.ParticlesMenu;
+import dev.math3w.particles.particles.PlayerParticleManager;
+import dev.math3w.particles.particles.SQLPlayerParticleManager;
 import me.zort.containr.Containr;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
@@ -13,7 +18,10 @@ public class ParticlesPlugin extends JavaPlugin {
     private Economy economy = null;
     private MessagesConfig messagesConfig;
     private DatabaseConfig databaseConfig;
+    private MenuConfig menuConfig;
     private ParticlesConfig particlesConfig;
+    private PlayerParticleManager playerParticleManager;
+    private ParticlesMenu particlesMenu;
 
     @Override
     public void onEnable() {
@@ -27,9 +35,14 @@ public class ParticlesPlugin extends JavaPlugin {
 
         economy = rsp.getProvider();
 
+        getCommand("particles").setExecutor(new ParticlesCommand(this));
+
         messagesConfig = new MessagesConfig(this);
         databaseConfig = new DatabaseConfig(this);
+        menuConfig = new MenuConfig(this);
         particlesConfig = new ParticlesConfig(this);
+        playerParticleManager = new SQLPlayerParticleManager(this);
+        particlesMenu = new ParticlesMenu(this);
     }
 
     public Economy getEconomy() {
@@ -44,7 +57,19 @@ public class ParticlesPlugin extends JavaPlugin {
         return databaseConfig;
     }
 
+    public MenuConfig getMenuConfig() {
+        return menuConfig;
+    }
+
     public ParticlesConfig getParticlesConfig() {
         return particlesConfig;
+    }
+
+    public PlayerParticleManager getPlayerParticleManager() {
+        return playerParticleManager;
+    }
+
+    public ParticlesMenu getParticlesMenu() {
+        return particlesMenu;
     }
 }
