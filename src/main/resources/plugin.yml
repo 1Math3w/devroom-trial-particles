@@ -1,0 +1,9 @@
+name: DevRoomParticles
+main: dev.math3w.particles.ParticlesPlugin
+version: 1.0
+author: math3w.dev
+api-version: 1.20
+depend:
+  - Vault
+commands:
+  particles:
