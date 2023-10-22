@@ -27,7 +27,7 @@ public class MySQLDatabase implements SQLDatabase {
         try {
             connection = DriverManager.getConnection(url, config.getString("username"), config.getString("password"));
         } catch (SQLException exception) {
-            throw new RuntimeException(exception);
+            exception.printStackTrace();
         }
     }
 
